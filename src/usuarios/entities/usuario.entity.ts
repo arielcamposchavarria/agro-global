@@ -14,7 +14,7 @@ import { Role } from '../../roles/entities/role.entity';
 @Index('IDX_USUARIOS_EMAIL_UNIQUE', ['email'], { unique: true })
 export class Usuario {
   @PrimaryGeneratedColumn('increment', { type: 'bigint' })
-  id: string; // bigint -> usa string para no perder precisión en JS
+  id: number; // bigint -> usa string para no perder precisión en JS
 
   // FK cruda + relación (permite consultas y validación)
   @Column({ name: 'rol_id', type: 'int' })
