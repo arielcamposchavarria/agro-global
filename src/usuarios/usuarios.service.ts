@@ -107,7 +107,7 @@ export class UsuariosService {
     };
   }
 
-  async findOne(id: string) {
+  async findOne(id: number) {
     const user = await this.repo.findOne({
       where: { id },
       relations: { rol: true },
@@ -121,7 +121,7 @@ export class UsuariosService {
     return user;
   }
 
-  async update(id: string, dto: UpdateUsuarioDto) {
+  async update(id: number, dto: UpdateUsuarioDto) {
     const user = await this.repo.findOne({ where: { id } });
     if (!user) throw new NotFoundException('Usuario no encontrado');
 
@@ -153,7 +153,7 @@ export class UsuariosService {
     return this.stripPassword(saved);
   }
 
-  async remove(id: string) {
+  async remove(id: number) {
     const user = await this.repo.findOne({ where: { id } });
     if (!user) throw new NotFoundException('Usuario no encontrado');
     await this.repo.remove(user);
