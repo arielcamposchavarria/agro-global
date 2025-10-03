@@ -1,4 +1,9 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateCarritoItemDto } from './create-carrito-item.dto';
+import { IsNumber, IsPositive } from 'class-validator';
+import { Transform } from 'class-transformer';
 
-export class UpdateCarritoItemDto extends PartialType(CreateCarritoItemDto) {}
+export class UpdateCarritoItemDto {
+  @IsNumber({ maxDecimalPlaces: 3 })
+  @IsPositive()
+  @Transform(({ value }) => parseFloat(value))
+  qty: number;
+}
